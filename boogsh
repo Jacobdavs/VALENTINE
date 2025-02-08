@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Be My Valentine?</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Sacramento&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #ffe6e9;
+            font-family: 'Sacramento', cursive;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 4vw;
+            color: #d6336c;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+            max-width: 90%;
+        }
+
+        img.bear-kiss {
+            width: 250px;
+            height: auto;
+            margin: 20px 0;
+            animation: kissBounce 1.5s infinite alternate;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            margin-top: 20px;
+            width: 100%;
+        }
+
+        button {
+            font-size: 18px;
+            padding: 12px 25px;
+            border: none;
+            cursor: pointer;
+            border-radius: 25px;
+            font-weight: bold;
+            font-family: 'Patrick Hand', cursive;
+            transition: all 0.3s ease;
+        }
+
+        .yes {
+            background-color: #ff4d6d;
+            color: white;
+            font-size: 22px;
+        }
+
+        .yes:hover {
+            background-color: #ff1e4d;
+            transform: scale(1.1);
+        }
+
+        .no {
+            background-color: gray;
+            color: white;
+            font-size: 18px;
+            position: relative;
+            font-family: 'Patrick Hand', cursive;
+        }
+
+        .no:hover {
+            background-color: #333;
+        }
+
+        /* PLEASE Background (Appears When Clicking "No") */
+        .please-background {
+            position: absolute;
+            font-size: 2rem;
+            color: #ff4d6d;
+            font-weight: bold;
+            opacity: 0.7;
+            font-family: 'Patrick Hand', cursive;
+        }
+
+        .love-message {
+            display: none;
+            text-align: center;
+            color: white;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #ffb6c1;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .love-message img {
+            width: 200px;
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        .love-message h1 {
+            font-size: 3rem;
+            color: #fff;
+            text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
+            margin-bottom: 10px;
+        }
+
+        .love-message p {
+            font-size: 2rem;
+            color: #fff;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        /* "YEY" Background for Thank You Page */
+        .yey-background {
+            position: absolute;
+            font-size: 2rem;
+            color: white;
+            font-weight: bold;
+            opacity: 0.6;
+            font-family: 'Patrick Hand', cursive;
+        }
+
+        /* Emoji Triangles */
+        .emoji-triangle {
+            position: absolute;
+            font-size: 2rem;
+            text-align: center;
+            line-height: 1.2;
+        }
+
+        /* First Page: 🫶🏼🙏😚 forming a triangle */
+        .emoji-top-left { top: 10px; left: 10px; }
+        .emoji-top-right { top: 10px; right: 10px; }
+        .emoji-bottom-left { bottom: 10px; left: 10px; }
+        .emoji-bottom-right { bottom: 10px; right: 10px; }
+
+        /* Second Page: 😚😚😚 forming a triangle */
+        .emoji-thankyou-top-left { top: 10px; left: 10px; }
+        .emoji-thankyou-top-right { top: 10px; right: 10px; }
+        .emoji-thankyou-bottom-left { bottom: 10px; left: 10px; }
+        .emoji-thankyou-bottom-right { bottom: 10px; right: 10px; }
+
+        @keyframes kissBounce {
+            from { transform: translateY(0); }
+            to { transform: translateY(-10px); }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>CAN I BE YOUR VALENTINE? ❤️</h1>
+
+    <!-- Bear Kiss GIF -->
+    <img class="bear-kiss" src="https://media1.tenor.com/m/heu_AkLRlGgAAAAC/bear-kiss-bear-kisses.gif" alt="Bear Kissing Another Bear">
+
+    <div class="buttons">
+        <button class="yes" id="yesButton" onclick="showLoveMessage()">Yes</button>
+        <button class="no" id="noButton" onclick="moveButton()">No</button>
+    </div>
+
+    <!-- "Please" Background -->
+    <div id="pleaseContainer"></div>
+
+    <!-- 🫶🏼🙏😚 Triangle in corners for first page -->
+    <div class="emoji-triangle emoji-top-left">🫶🏼<br>🙏<br>😚</div>
+    <div class="emoji-triangle emoji-top-right">🫶🏼<br>🙏<br>😚</div>
+    <div class="emoji-triangle emoji-bottom-left">🫶🏼<br>🙏<br>😚</div>
+    <div class="emoji-triangle emoji-bottom-right">🫶🏼<br>🙏<br>😚</div>
+
+    <div class="love-message" id="loveScreen">
+        <!-- Snoopy GIF -->
+        <img src="https://media1.tenor.com/m/ZCq4SwgCfxAAAAAC/snoopy-peanuts.gif" alt="Snoopy Happy Dance">
+        <h1>Thank you for being my Valentine!!!</h1>
+        <p>I love you ❤️</p>
+
+        <!-- "Yey" Background -->
+        <div id="yeyContainer"></div>
+
+        <!-- 😚😚😚 Triangle in corners for second page -->
+        <div class="emoji-triangle emoji-thankyou-top-left">😚<br>😚<br>😚</div>
+        <div class="emoji-triangle emoji-thankyou-top-right">😚<br>😚<br>😚</div>
+        <div class="emoji-triangle emoji-thankyou-bottom-left">😚<br>😚<br>😚</div>
+        <div class="emoji-triangle emoji-thankyou-bottom-right">😚<br>😚<br>😚</div>
+    </div>
+
+    <script>
+        function moveButton() {
+            const button = document.getElementById("noButton");
+            let newX = Math.random() * (window.innerWidth * 0.7);
+            let newY = Math.random() * (window.innerHeight * 0.7);
+            button.style.position = "absolute";
+            button.style.left = `${newX}px`;
+            button.style.top = `${newY}px`;
+
+            let pleaseText = document.createElement("div");
+            pleaseText.className = "please-background";
+            pleaseText.style.left = `${Math.random() * 90}%`;
+            pleaseText.style.top = `${Math.random() * 90}%`;
+            pleaseText.innerText = "PLEASE!";
+            document.getElementById("pleaseContainer").appendChild(pleaseText);
+        }
+
+        function showLoveMessage() {
+            document.getElementById("loveScreen").style.display = "flex";
+        }
+    </script>
+
+</body>
+</html>
